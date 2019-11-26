@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
 
+    'core',
+
     'oscar',
     'oscar.apps.analytics',
     'oscar.apps.checkout',
@@ -188,3 +190,4 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
+AUTH_USER_MODEL = 'core.User'
