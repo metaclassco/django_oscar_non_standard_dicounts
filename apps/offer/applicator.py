@@ -25,6 +25,9 @@ class Applicator(CoreApplicator):
         return offers
 
     def is_birthday(self, user):
+        if user.is_anonymous:
+            return False
+
         today_date = now().strftime('%d%m')
         user_birthday_date = user.birthday.strftime('%d%m')
         return today_date == user_birthday_date
