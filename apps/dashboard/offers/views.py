@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.views.generic import FormView
 
 from oscar.core.loading import get_model
@@ -18,6 +19,6 @@ class BirthdayBenefitUpdateView(FormView):
 
     def get_form_kwargs(self):
         form_kwargs = super().get_form_kwargs()
-        offer = ConditionalOffer.objects.get(slug='birthday-discount')
+        offer = ConditionalOffer.objects.get(slug=settings.BIRTHDAY_OFFER_SLUG)
         form_kwargs['instance'] = offer.benefit
         return form_kwargs

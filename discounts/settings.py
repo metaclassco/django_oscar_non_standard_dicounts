@@ -196,6 +196,7 @@ HAYSTACK_CONNECTIONS = {
 
 AUTH_USER_MODEL = 'core.User'
 
+BIRTHDAY_OFFER_SLUG = 'birthday-discount'
 
 OSCAR_DASHBOARD_NAVIGATION[4]['children'].append({
     'label': _('Edit birthday discount'),
