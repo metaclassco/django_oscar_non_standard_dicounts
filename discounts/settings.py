@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+from django.utils.translation import gettext_lazy as _
 from oscar.defaults import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -103,7 +104,9 @@ ROOT_URLCONF = 'discounts.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -192,3 +195,9 @@ HAYSTACK_CONNECTIONS = {
 }
 
 AUTH_USER_MODEL = 'core.User'
+
+
+OSCAR_DASHBOARD_NAVIGATION[4]['children'].append({
+    'label': _('Edit birthday discount'),
+    'url_name': 'dashboard:birthday-benefit-update',
+})
