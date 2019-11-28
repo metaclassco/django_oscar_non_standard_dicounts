@@ -1,107 +1,177 @@
 [
-    {
-        "pk": 1,
-        "model": "offer.conditionaloffer",
-        "fields": {
-            "status": "Open",
-            "max_global_applications": null,
-            "start_datetime": "2013-02-21T00:00:00Z",
-            "max_user_applications": null,
-            "num_applications": 0,
-            "description": "This is a normal site offer.<br>",
-            "num_orders": 0,
-            "total_discount": "0",
-            "redirect_url": "",
-            "priority": 0,
-            "benefit": 1,
-            "end_datetime": null,
-            "max_discount": null,
-            "max_basket_applications": null,
-            "date_created": "2013-02-21T15:50:56.701Z",
-            "offer_type": "Site",
-            "slug": "dave",
-            "condition": 1,
-            "name": "Normal site offer"
-        }
-    },
-    {
-        "pk": 3,
-        "model": "offer.conditionaloffer",
-        "fields": {
-            "status": "Open",
-            "max_global_applications": null,
-            "start_datetime": "2013-03-12T00:00:00Z",
-            "max_user_applications": null,
-            "num_applications": 0,
-            "description": "This gives a shipping discount<br>",
-            "num_orders": 0,
-            "total_discount": "0",
-            "redirect_url": "",
-            "priority": 0,
-            "benefit": 3,
-            "end_datetime": null,
-            "max_discount": null,
-            "max_basket_applications": null,
-            "date_created": "2013-03-12T15:43:43.839Z",
-            "offer_type": "Site",
-            "slug": "shipping-offer",
-            "condition": 3,
-            "name": "Shipping offer"
-        }
-    },
-    {
-        "pk": 1,
-        "model": "offer.condition",
-        "fields": {
-            "range": 1,
-            "type": "Count",
-            "proxy_class": null,
-            "value": "3"
-        }
-    },
-    {
-        "pk": 3,
-        "model": "offer.condition",
-        "fields": {
-            "range": 1,
-            "type": "Count",
-            "proxy_class": null,
-            "value": "1"
-        }
-    },
-    {
-        "pk": 1,
-        "model": "offer.benefit",
-        "fields": {
-            "range": 1,
-            "proxy_class": null,
-            "type": "Multibuy",
-            "max_affected_items": null,
-            "value": null
-        }
-    },
-    {
-        "pk": 3,
-        "model": "offer.benefit",
-        "fields": {
-            "range": null,
-            "proxy_class": null,
-            "type": "Shipping fixed price",
-            "max_affected_items": null,
-            "value": "1.99"
-        }
-    },
-    {
-        "pk": 1,
-        "model": "offer.range",
-        "fields": {
-            "included_categories": [],
-            "name": "Site",
-            "proxy_class": null,
-            "excluded_products": [],
-            "classes": [],
-            "date_created": "2013-02-21T15:26:09.651Z",
-            "includes_all_products": true
-        }
+{
+    "model": "offer.conditionaloffer",
+    "pk": 1,
+    "fields": {
+        "name": "Normal site offer",
+        "slug": "dave",
+        "description": "This is a normal site offer.<br>",
+        "offer_type": "Site",
+        "exclusive": true,
+        "status": "Open",
+        "condition": 1,
+        "benefit": 1,
+        "priority": 0,
+        "start_datetime": "2013-02-21T00:00:00Z",
+        "end_datetime": null,
+        "max_global_applications": null,
+        "max_user_applications": null,
+        "max_basket_applications": null,
+        "max_discount": null,
+        "total_discount": "0.00",
+        "num_applications": 0,
+        "num_orders": 0,
+        "redirect_url": "",
+        "date_created": "2013-02-21T15:50:56.701Z"
     }
+},
+{
+    "model": "offer.conditionaloffer",
+    "pk": 3,
+    "fields": {
+        "name": "Shipping offer",
+        "slug": "shipping-offer",
+        "description": "This gives a shipping discount<br>",
+        "offer_type": "Site",
+        "exclusive": true,
+        "status": "Open",
+        "condition": 3,
+        "benefit": 3,
+        "priority": 0,
+        "start_datetime": "2013-03-12T00:00:00Z",
+        "end_datetime": null,
+        "max_global_applications": null,
+        "max_user_applications": null,
+        "max_basket_applications": null,
+        "max_discount": null,
+        "total_discount": "0.00",
+        "num_applications": 0,
+        "num_orders": 0,
+        "redirect_url": "",
+        "date_created": "2013-03-12T15:43:43.839Z"
+    }
+},
+{
+    "model": "offer.conditionaloffer",
+    "pk": 4,
+    "fields": {
+        "name": "Birthday discount",
+        "slug": "birthday-discount",
+        "description": "Each user will have a discount on his birthday.",
+        "offer_type": "Site",
+        "exclusive": true,
+        "status": "Open",
+        "condition": 4,
+        "benefit": 4,
+        "priority": 1000,
+        "start_datetime": "2019-11-01T00:00:00Z",
+        "end_datetime": "2020-10-01T00:00:00Z",
+        "max_global_applications": null,
+        "max_user_applications": null,
+        "max_basket_applications": null,
+        "max_discount": null,
+        "total_discount": "0.00",
+        "num_applications": 0,
+        "num_orders": 0,
+        "redirect_url": "",
+        "date_created": "2019-11-26T18:05:25.249Z"
+    }
+},
+{
+    "model": "offer.benefit",
+    "pk": 1,
+    "fields": {
+        "range": 1,
+        "type": "Multibuy",
+        "value": null,
+        "max_affected_items": null,
+        "proxy_class": ""
+    }
+},
+{
+    "model": "offer.benefit",
+    "pk": 3,
+    "fields": {
+        "range": null,
+        "type": "Shipping fixed price",
+        "value": "1.99",
+        "max_affected_items": null,
+        "proxy_class": ""
+    }
+},
+{
+    "model": "offer.benefit",
+    "pk": 4,
+    "fields": {
+        "range": 1,
+        "type": "Percentage",
+        "value": "10.00",
+        "max_affected_items": null,
+        "proxy_class": ""
+    }
+},
+{
+    "model": "offer.condition",
+    "pk": 1,
+    "fields": {
+        "range": 1,
+        "type": "Count",
+        "value": "3.00",
+        "proxy_class": ""
+    }
+},
+{
+    "model": "offer.condition",
+    "pk": 3,
+    "fields": {
+        "range": 1,
+        "type": "Count",
+        "value": "1.00",
+        "proxy_class": ""
+    }
+},
+{
+    "model": "offer.condition",
+    "pk": 4,
+    "fields": {
+        "range": 1,
+        "type": "Count",
+        "value": "1.00",
+        "proxy_class": ""
+    }
+},
+{
+    "model": "offer.range",
+    "pk": 1,
+    "fields": {
+        "name": "Site",
+        "slug": "",
+        "description": "",
+        "is_public": false,
+        "includes_all_products": true,
+        "proxy_class": "",
+        "date_created": "2013-02-21T15:26:09.651Z",
+        "excluded_products": [],
+        "classes": [],
+        "included_categories": []
+    }
+},
+{
+    "model": "offer.range",
+    "pk": 2,
+    "fields": {
+        "name": "Fiction books",
+        "slug": "fiction-books",
+        "description": "",
+        "is_public": false,
+        "includes_all_products": false,
+        "proxy_class": "",
+        "date_created": "2013-02-21T16:25:38.805Z",
+        "excluded_products": [],
+        "classes": [],
+        "included_categories": [
+            2
+        ]
+    }
+}
 ]
