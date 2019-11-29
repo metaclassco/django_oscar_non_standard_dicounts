@@ -26,7 +26,7 @@ class Applicator(CoreApplicator):
 
     def get_session_offers(self, request):
         offers = []
-        affiliate = request.session.get(settings.SESSION_AFFILIATE_KEY, None)
+        affiliate = request.session.get(settings.AFFILIATE_SESSION_KEY, None)
         if affiliate is not None:
             offer = ConditionalOffer.active.select_related('condition', 'benefit').get(
                 slug=settings.AFFILIATE_OFFER_SLUG,

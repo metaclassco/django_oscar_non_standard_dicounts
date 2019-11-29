@@ -21,7 +21,7 @@ class SetAffiliateAndRedirectView(RedirectView):
             affiliate_user = User.objects.get(username=affiliate)
             user = request.user
             if affiliate_user != user and not user.is_affiliate_discount_used:
-                request.session[settings.SESSION_AFFILIATE_KEY] = affiliate
+                request.session[settings.AFFILIATE_SESSION_KEY] = affiliate
                 message = (
                     'You have discount from {}. '
                     'You will see it in your basket.'.format(affiliate_user.get_full_name())
