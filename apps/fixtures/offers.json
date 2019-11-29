@@ -58,7 +58,7 @@
         "name": "Birthday discount",
         "slug": "birthday-discount",
         "description": "Each user will have a discount on his birthday.",
-        "offer_type": "Site",
+        "offer_type": "User",
         "exclusive": true,
         "status": "Open",
         "condition": 4,
@@ -75,6 +75,32 @@
         "num_orders": 0,
         "redirect_url": "",
         "date_created": "2019-11-26T18:05:25.249Z"
+    }
+},
+{
+    "model": "offer.conditionaloffer",
+    "pk": 5,
+    "fields": {
+        "name": "Affiliate discount",
+        "slug": "affiliate-discount",
+        "description": "",
+        "offer_type": "Session",
+        "exclusive": true,
+        "status": "Open",
+        "condition": 5,
+        "benefit": 5,
+        "priority": 1000,
+        "start_datetime": "2018-11-29T00:00:00Z",
+        "end_datetime": "2022-11-01T00:00:00Z",
+        "max_global_applications": null,
+        "max_user_applications": null,
+        "max_basket_applications": null,
+        "max_discount": null,
+        "total_discount": "0.00",
+        "num_applications": 0,
+        "num_orders": 0,
+        "redirect_url": "",
+        "date_created": "2019-11-29T13:02:18.531Z"
     }
 },
 {
@@ -111,6 +137,17 @@
     }
 },
 {
+    "model": "offer.benefit",
+    "pk": 5,
+    "fields": {
+        "range": 1,
+        "type": "Percentage",
+        "value": "15.00",
+        "max_affected_items": null,
+        "proxy_class": ""
+    }
+},
+{
     "model": "offer.condition",
     "pk": 1,
     "fields": {
@@ -133,6 +170,16 @@
 {
     "model": "offer.condition",
     "pk": 4,
+    "fields": {
+        "range": 1,
+        "type": "Count",
+        "value": "1.00",
+        "proxy_class": ""
+    }
+},
+{
+    "model": "offer.condition",
+    "pk": 5,
     "fields": {
         "range": 1,
         "type": "Count",

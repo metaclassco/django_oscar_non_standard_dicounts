@@ -9,7 +9,7 @@ database_clean: ## Clean images, cache, static and database
 
 load_test_data: ## Import fixtures and collect static
 	# Import some fixtures. Order is important as JSON fixtures include primary keys
-	./manage.py loaddata apps/fixtures/auth.json
+	./manage.py loaddata apps/fixtures/core.json
 	./manage.py loaddata apps/fixtures/child_products.json
 	./manage.py oscar_import_catalogue apps/fixtures/*.csv
 	./manage.py oscar_import_catalogue_images apps/fixtures/images.tar.gz
