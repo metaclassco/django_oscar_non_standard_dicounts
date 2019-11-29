@@ -202,3 +202,6 @@ OSCAR_DASHBOARD_NAVIGATION[4]['children'].append({
     'label': _('Edit birthday discount'),
     'url_name': 'dashboard:birthday-benefit-update',
 })
+
+SESSION_AFFILIATE_KEY = 'affiliate'
+AFFILIATE_OFFER_SLUG = 'affiliate-discount'
