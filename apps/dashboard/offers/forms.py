@@ -6,7 +6,7 @@ from oscar.core.loading import get_model
 Benefit = get_model('offer', 'Benefit')
 
 
-class BirthdayBenefitForm(forms.ModelForm):
+class BenefitForm(forms.ModelForm):
 
     class Meta:
         model = Benefit

@@ -3,7 +3,7 @@ from django.views.generic import FormView
 
 from oscar.core.loading import get_model
 
-from .forms import BirthdayBenefitForm
+from .forms import BenefitForm
 
 
 Product = get_model('catalogue', 'Product')
@@ -13,12 +13,17 @@ ConditionalOffer = get_model('offer', 'ConditionalOffer')
 Benefit = get_model('offer', 'Benefit')
 
 
-class BirthdayBenefitUpdateView(FormView):
-    form_class = BirthdayBenefitForm
-    template_name = 'oscar/dashboard/offers/birthday_benefit_form.html'
+class BenefitUpdateMixin(FormView):
+    form_class = BenefitForm
+    template_name = 'oscar/dashboard/offers/benefit_form.html'
+    slug = None
 
     def get_form_kwargs(self):
         form_kwargs = super().get_form_kwargs()
         offer = ConditionalOffer.objects.get(slug=settings.BIRTHDAY_OFFER_SLUG)
         form_kwargs['instance'] = offer.benefit
         return form_kwargs
+
+
+class BirthdayBenefitUpdateView(BenefitUpdateMixin):
+    slug = settings.BIRTHDAY_OFFER_SLUG
