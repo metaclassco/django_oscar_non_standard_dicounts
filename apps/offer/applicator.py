@@ -24,6 +24,17 @@ class Applicator(CoreApplicator):
 
         return offers
 
+    def get_session_offers(self, request):
+        offers = []
+        affiliate = request.session.get(settings.SESSION_AFFILIATE_KEY, None)
+        if affiliate is not None:
+            offer = ConditionalOffer.active.select_related('condition', 'benefit').get(
+                slug=settings.AFFILIATE_OFFER_SLUG,
+                offer_type=ConditionalOffer.SESSION
+            )
+            offers.append(offer)
+        return offers
+
     def is_birthday(self, user):
         if user.is_anonymous:
             return False
