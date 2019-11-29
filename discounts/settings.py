@@ -209,3 +209,4 @@ OSCAR_DASHBOARD_NAVIGATION[4]['children'].append({
 
 SESSION_AFFILIATE_KEY = 'affiliate'
 AFFILIATE_OFFER_SLUG = 'affiliate-discount'
+AFFILIATE_BONUSES = 100
