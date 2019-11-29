@@ -1,7 +1,9 @@
 from decimal import Decimal as D
 
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.db import transaction
+from django.db.models import F
 from django.utils.translation import gettext_lazy as _
 
 from oscar.apps.order.signals import order_placed
@@ -9,6 +11,7 @@ from oscar.apps.order.utils import OrderCreator as OriginalOrderCreator, OrderNu
 from oscar.core.loading import get_model
 
 
+User = get_user_model()
 Order = get_model('order', 'Order')
 
 
@@ -81,4 +84,10 @@ class OrderCreator(OriginalOrderCreator):
         user.is_affiliate_discount_used = True
         user.save()
 
-        del request.session[settings.SESSION_AFFILIATE_KEY]
+        if settings.AFFILIATE_SESSION_KEY in request.session.keys():
+            affiliate_username = request.session[settings.AFFILIATE_SESSION_KEY]
+            affiliate = User.objects.get(username=affiliate_username)
+            affiliate.bonuses = F('bonuses') + settings.AFFILIATE_BONUSES
+            affiliate.save()
+
+            del request.session[settings.AFFILIATE_SESSION_KEY]
