@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'oscar.apps.shipping',
     'oscar.apps.catalogue',
     'oscar.apps.catalogue.reviews',
+    'oscar.apps.communication',
     'oscar.apps.partner',
     'oscar.apps.basket',
     'oscar.apps.payment',
