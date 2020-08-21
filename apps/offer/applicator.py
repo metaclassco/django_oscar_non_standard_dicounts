@@ -39,6 +39,4 @@ class Applicator(CoreApplicator):
         if user.is_anonymous:
             return False
 
-        today_date = now().strftime('%d%m')
-        user_birthday_date = user.date_of_birth.strftime('%d%m')
-        return today_date == user_birthday_date
+        return now().date() == user.date_of_birth
