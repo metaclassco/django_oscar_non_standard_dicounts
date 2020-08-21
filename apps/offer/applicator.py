@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.utils.timezone import now
 
 from oscar.apps.offer.applicator import Applicator as CoreApplicator
 from oscar.core.loading import get_model
@@ -11,18 +10,8 @@ ConditionalOffer = get_model('offer', 'ConditionalOffer')
 class Applicator(CoreApplicator):
 
     def get_user_offers(self, user):
-        offers = []
-        if self.is_birthday(user):
-            try:
-                offer = ConditionalOffer.active.select_related('condition', 'benefit').get(
-                    slug=settings.BIRTHDAY_OFFER_SLUG,
-                    offer_type=ConditionalOffer.USER
-                )
-                offers.append(offer)
-            except ConditionalOffer.DoesNotExist:
-                pass
-
-        return offers
+        qs = ConditionalOffer.active.filter(offer_type=ConditionalOffer.USER)
+        return qs.select_related('condition', 'benefit')
 
     def get_session_offers(self, request):
         offers = []
@@ -34,9 +23,3 @@ class Applicator(CoreApplicator):
             )
             offers.append(offer)
         return offers
-
-    def is_birthday(self, user):
-        if user.is_anonymous:
-            return False
-
-        return now().date() == user.date_of_birth
