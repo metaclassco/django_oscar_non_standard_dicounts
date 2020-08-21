@@ -40,5 +40,5 @@ class Applicator(CoreApplicator):
             return False
 
         today_date = now().strftime('%d%m')
-        user_birthday_date = user.birthday.strftime('%d%m')
+        user_birthday_date = user.date_of_birth.strftime('%d%m')
         return today_date == user_birthday_date
