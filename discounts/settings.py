@@ -187,15 +187,6 @@ AUTH_USER_MODEL = 'accounts.User'
 
 BIRTHDAY_OFFER_SLUG = 'birthday-discount'
 
-OSCAR_DASHBOARD_NAVIGATION[4]['children'].append({
-    'label': _('Edit birthday discount'),
-    'url_name': 'dashboard:birthday-benefit-update',
-})
-OSCAR_DASHBOARD_NAVIGATION[4]['children'].append({
-    'label': _('Edit affiliate discount'),
-    'url_name': 'dashboard:affiliate-benefit-update',
-})
-
 AFFILIATE_SESSION_KEY = 'affiliate'
 AFFILIATE_OFFER_SLUG = 'affiliate-discount'
 AFFILIATE_BONUSES = 100
