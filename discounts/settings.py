@@ -105,7 +105,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'oscar.apps.search.context_processors.search_form',
                 'oscar.apps.checkout.context_processors.checkout',
-                'oscar.apps.customer.notifications.context_processors.notifications',
+                'oscar.apps.communication.notifications.context_processors.notifications',
                 'oscar.core.context_processors.metadata',
             ],
         },
