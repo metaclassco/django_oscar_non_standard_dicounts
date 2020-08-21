@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
 
+    'apps.accounts',
+
     'oscar',
     'oscar.apps.analytics',
     'oscar.apps.checkout',
@@ -43,7 +45,7 @@ INSTALLED_APPS = [
     'oscar.apps.partner',
     'oscar.apps.basket',
     'oscar.apps.payment',
-    'apps.customer.apps.CustomerConfig',
+    'oscar.apps.customer',
     'oscar.apps.search',
     'oscar.apps.voucher',
     'oscar.apps.wishlists',
@@ -181,7 +183,7 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
-AUTH_USER_MODEL = 'customer.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 BIRTHDAY_OFFER_SLUG = 'birthday-discount'
 
