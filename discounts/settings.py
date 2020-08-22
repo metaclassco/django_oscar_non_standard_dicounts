@@ -185,8 +185,6 @@ HAYSTACK_CONNECTIONS = {
 
 AUTH_USER_MODEL = 'accounts.User'
 
-BIRTHDAY_OFFER_SLUG = 'birthday-discount'
-
 AFFILIATE_SESSION_KEY = 'affiliate'
 AFFILIATE_OFFER_SLUG = 'affiliate-discount'
 AFFILIATE_BONUSES = 100
