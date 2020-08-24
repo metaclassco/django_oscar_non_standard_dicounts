@@ -10,7 +10,7 @@ class UserAdmin(CoreUserAdmin):
         (None, {'fields': ('username', 'password')}),
         (
             _('Personal info'),
-            {'fields': ('first_name', 'last_name', 'email', 'referral_code', 'is_referral_code_used')}
+            {'fields': ('first_name', 'last_name', 'email', 'date_of_birth', 'referral_code', 'is_referral_code_used')}
         ),
         (_('Permissions'), {
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
