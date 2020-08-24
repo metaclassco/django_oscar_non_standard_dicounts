@@ -1,10 +1,14 @@
 from django import forms
-
-from oscar.core.loading import get_model
 from django.utils.translation import gettext_lazy as _
 
+from oscar.core.loading import get_class, get_model
 
+from apps.offer.models import ConditionIncompatible
+
+
+Condition = get_model('offer', 'Condition')
 ConditionalOffer = get_model('offer', 'ConditionalOffer')
+CoreConditionForm = get_class('dashboard.offers.forms', 'ConditionForm')
 
 
 # Voucher offer type deliberately excluded, since voucher offer types created through
@@ -23,3 +27,20 @@ class MetaDataForm(forms.ModelForm):
     class Meta:
         model = ConditionalOffer
         fields = ('name', 'description', 'offer_type')
+
+
+class ConditionForm(CoreConditionForm):
+    def __init__(self, *args, **kwargs):
+        self.session_offer = kwargs.pop("session_offer", None)
+        super().__init__(*args, **kwargs)
+
+    def clean(self):
+        data = super().clean()
+        custom_condition = data.get("custom_condition", None)
+        if custom_condition:
+            condition = Condition.objects.get(id=custom_condition)
+            try:
+                condition.check_compatibility(offer=self.session_offer)
+            except ConditionIncompatible as e:
+                raise forms.ValidationError(e)
+        return data
