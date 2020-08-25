@@ -36,11 +36,16 @@ class BirthdayCondition(CustomConditionMixin, Condition):
     def check_compatibility(self, offer):
         if offer.offer_type != ConditionalOffer.USER:
             raise ConditionIncompatible(
-                "Birthday condition could be used only with user type offer."
+                "Birthday condition could be used only with the user type offer."
             )
 
 
 class ReferralCodeCondition(CustomConditionMixin, Condition):
+    """
+    Custom condition, which allows referee (referral code applicant) to
+    qualify for the discount.
+    """
+
     _description = "User used referral code."
 
     def is_satisfied(self, offer, basket, request=None):
@@ -50,5 +55,27 @@ class ReferralCodeCondition(CustomConditionMixin, Condition):
     def check_compatibility(self, offer):
         if offer.offer_type != ConditionalOffer.SESSION:
             raise ConditionIncompatible(
-                "Referral code condition could be used only with session type offer."
+                "Referral code condition could be used only with the session type offer."
+            )
+
+
+class ReferrerCondition(CustomConditionMixin, Condition):
+    """
+    Custom condition, which allows referrer (referrer code provider) to
+    qualify for the discount. Referrers get discount every time someone
+    purchases using their referral codes.
+    """
+
+    _description = "Someone purchased using user's referral code."
+
+    def is_satisfied(self, offer, basket, request=None):
+        user = basket.owner
+        num_offer_applications = offer.get_num_user_applications(user)
+        num_referral_code_applications = user.referres.count()
+        return num_referral_code_applications > num_offer_applications
+
+    def check_compatibility(self, offer):
+        if offer.offer_type != ConditionalOffer.USER:
+            raise ConditionIncompatible(
+                "Referrer condition could be used only with the user type offer."
             )
