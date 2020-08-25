@@ -2,5 +2,5 @@
 
 Showcase Oscar application which implements custom discounts:
 
-* affiliate referral discount;
+* referral program;
 * birthday offer.
