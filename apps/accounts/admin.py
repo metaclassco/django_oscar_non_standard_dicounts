@@ -10,14 +10,14 @@ class UserAdmin(CoreUserAdmin):
         (None, {'fields': ('username', 'password')}),
         (
             _('Personal info'),
-            {'fields': ('first_name', 'last_name', 'email', 'date_of_birth', 'referral_code', 'is_referral_code_used')}
+            {'fields': ('first_name', 'last_name', 'email', 'date_of_birth', 'referral_link', 'is_referral_code_used')}
         ),
         (_('Permissions'), {
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
         }),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
-    readonly_fields = ('referral_code', 'is_referral_code_used')
+    readonly_fields = ('referral_link', 'is_referral_code_used')
 
 
 admin.site.register(User, UserAdmin)
