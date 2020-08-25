@@ -6,6 +6,11 @@ class ConditionIncompatible(Exception):
 
 
 class ConditionalOffer(AbstractConditionalOffer):
+    def apply_benefit(self, basket, request=None):
+        if not self.is_condition_satisfied(basket, request=request):
+            return ZERO_DISCOUNT
+        return self.benefit.proxy().apply(basket, self.condition.proxy(), self)
+
     def is_condition_satisfied(self, basket, request=None):
         return self.condition.proxy().is_satisfied(self, basket, request=request)
 
