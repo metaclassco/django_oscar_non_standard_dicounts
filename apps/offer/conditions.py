@@ -28,7 +28,10 @@ class BirthdayCondition(CustomConditionMixin, Condition):
     def is_satisfied(self, offer, basket, request=None):
         if not basket.owner:
             return False
-        return basket.owner.date_of_birth == now().date()
+
+        current_date = now().date()
+        dob = basket.owner.date_of_birth
+        return current_date.day == dob.day and current_date.month == dob.month
 
     def check_compatibility(self, offer):
         if offer.offer_type != ConditionalOffer.USER:
