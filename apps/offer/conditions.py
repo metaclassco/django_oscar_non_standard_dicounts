@@ -44,7 +44,7 @@ class ReferralCodeCondition(CustomConditionMixin, Condition):
     _description = "User used referral code."
 
     def is_satisfied(self, offer, basket, request=None):
-        referral_code = request.session.get(settings.AFFILIATE_SESSION_KEY, None)
+        referral_code = request.session.get(settings.REFERRAL_SESSION_KEY, None)
         return referral_code is not None
 
     def check_compatibility(self, offer):

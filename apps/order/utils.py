@@ -24,7 +24,7 @@ class OrderCreator(OriginalOrderCreator):
     def record_discount(self, discount):
         super().record_discount(discount)
 
-        referral_code = self.request.session.get(settings.AFFILIATE_SESSION_KEY, None)
+        referral_code = self.request.session.get(settings.REFERRAL_SESSION_KEY, None)
 
         if referral_code:
             try:
@@ -37,4 +37,4 @@ class OrderCreator(OriginalOrderCreator):
             self.user.referrer = referrer
             self.user.save()
 
-            del self.request.session[settings.AFFILIATE_SESSION_KEY]
+            del self.request.session[settings.REFERRAL_SESSION_KEY]

@@ -18,7 +18,7 @@ class SetReferralCodeAndRedirectView(RedirectView):
                 if request.user.is_authenticated and request.user.referral_code == referral_code:
                     messages.error(request, "You can't apply your own referral code.")
                 else:
-                    request.session[settings.AFFILIATE_SESSION_KEY] = referral_code
+                    request.session[settings.REFERRAL_SESSION_KEY] = referral_code
                     messages.success(request, "Your referral code is valid, discount will be applied on checkout.")
             else:
                 messages.error(request, "Referrer account not found.")
