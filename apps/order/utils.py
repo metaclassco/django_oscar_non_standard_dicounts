@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.db.models import F
 
 from oscar.apps.order.utils import OrderCreator as OriginalOrderCreator
 from oscar.core.loading import get_model
@@ -20,17 +19,10 @@ class OrderCreator(OriginalOrderCreator):
         return super().place_order(*args, **kwargs)
 
     def record_discount(self, discount):
-        if discount['offer'].slug == settings.AFFILIATE_OFFER_SLUG:
-            self.record_affiliate_discount_usage()
-
-    def record_affiliate_discount_usage(self):
-        self.user.is_affiliate_discount_used = True
-        self.user.save()
+        super().record_discount(discount)
 
         if settings.AFFILIATE_SESSION_KEY in self.request.session.keys():
-            affiliate_username = self.request.session[settings.AFFILIATE_SESSION_KEY]
-            affiliate = User.objects.get(username=affiliate_username)
-            affiliate.bonuses = F('bonuses') + settings.AFFILIATE_BONUSES
-            affiliate.save()
+            self.user.is_referral_code_used = True
+            self.user.save()
 
             del self.request.session[settings.AFFILIATE_SESSION_KEY]
