@@ -9,6 +9,7 @@ class User(AbstractUser):
     is_referral_code_used = models.BooleanField(default=False)
     bonuses = models.PositiveSmallIntegerField(default=0)
     referral_code = models.CharField(null=True, blank=True, max_length=10, unique=True)
+    referrer = models.ForeignKey('User', null=True, blank=True, related_name='referees', on_delete=models.SET_NULL)
 
     @property
     def referral_link(self):
