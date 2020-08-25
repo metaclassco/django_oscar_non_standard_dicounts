@@ -49,6 +49,9 @@ class ReferralCodeCondition(CustomConditionMixin, Condition):
     _description = "User used referral code."
 
     def is_satisfied(self, offer, basket, request=None):
+        if request.user.is_authenticated and request.user.is_referral_code_used:
+            return False
+
         referral_code = request.session.get(settings.REFERRAL_SESSION_KEY, None)
         return referral_code is not None
 
@@ -71,7 +74,7 @@ class ReferrerCondition(CustomConditionMixin, Condition):
     def is_satisfied(self, offer, basket, request=None):
         user = basket.owner
         num_offer_applications = offer.get_num_user_applications(user)
-        num_referral_code_applications = user.referres.count()
+        num_referral_code_applications = user.referees.count()
         return num_referral_code_applications > num_offer_applications
 
     def check_compatibility(self, offer):
