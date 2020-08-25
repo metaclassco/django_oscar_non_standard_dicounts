@@ -172,6 +172,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 OSCAR_THUMBNAILER = 'oscar.core.thumbnails.EasyThumbnails'
 
+OSCAR_DEFAULT_CURRENCY = 'EUR'
+
 AUTHENTICATION_BACKENDS = (
     'oscar.apps.customer.auth_backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
