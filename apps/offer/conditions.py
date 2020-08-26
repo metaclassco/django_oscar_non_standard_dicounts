@@ -74,9 +74,10 @@ class ReferrerCondition(CustomConditionMixin, Condition):
 
     def is_satisfied(self, offer, basket, request=None):
         user = basket.owner
-        num_offer_applications = offer.get_num_user_applications(user)
-        num_referral_code_applications = user.referees.count()
-        return num_referral_code_applications > num_offer_applications
+        if user:
+            num_offer_applications = offer.get_num_user_applications(user)
+            num_referral_code_applications = user.referees.count()
+            return num_referral_code_applications > num_offer_applications
 
     def check_compatibility(self, offer):
         if offer.offer_type != ConditionalOffer.USER:
