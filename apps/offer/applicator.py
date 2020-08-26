@@ -11,18 +11,15 @@ class Applicator(CoreApplicator):
         offers = self.get_offers(basket, user, request)
         self.apply_offers(basket, offers, request)
 
-    def get_user_offers(self, user):
-        qs = ConditionalOffer.active.filter(offer_type=ConditionalOffer.USER)
+    def _get_offers_by_type(self, offer_type):
+        qs = ConditionalOffer.active.filter(offer_type=offer_type)
         return qs.select_related('condition', 'benefit')
 
+    def get_user_offers(self, user):
+        return self._get_offers_by_type(offer_type=ConditionalOffer.USER)
+
     def get_session_offers(self, request):
-        offers = []
-        qs = ConditionalOffer.active.filter(offer_type=ConditionalOffer.SESSION)
-        qs = qs.select_related('condition', 'benefit')
-        for offer in qs:
-            if offer.is_condition_satisfied(basket=request.basket, request=request):
-                offers.append(offer)
-        return offers
+        return self._get_offers_by_type(offer_type=ConditionalOffer.SESSION)
 
     def apply_offers(self, basket, offers, request):
         applications = OfferApplications()
