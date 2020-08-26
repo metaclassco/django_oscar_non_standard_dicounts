@@ -15,8 +15,11 @@ class SetReferralCodeAndRedirectView(RedirectView):
         referral_code = self.kwargs.get('referral_code', None)
         if referral_code:
             if User.objects.filter(referral_code=referral_code).exists():
-                if request.user.is_authenticated and request.user.referral_code == referral_code:
-                    messages.error(request, "You can't apply your own referral code.")
+                if request.user.is_authenticated:
+                    if request.user.referral_code == referral_code:
+                        messages.error(request, "You can't apply your own referral code.")
+                    elif request.user.is_referral_code_used:
+                        messages.error(request, "You already used referral code.")
                 else:
                     request.session[settings.REFERRAL_SESSION_KEY] = referral_code
                     messages.success(request, "Your referral code is valid, discount will be applied on checkout.")
