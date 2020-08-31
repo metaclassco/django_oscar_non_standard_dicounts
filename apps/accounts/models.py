@@ -13,5 +13,5 @@ class User(AbstractUser):
     @property
     def referral_link(self):
         current_site = Site.objects.get_current()
-        referral_url = reverse_lazy("offer:apply_referral_code", args=(self.referral_code,))
-        return "http://%s%s" % (current_site.domain, referral_url)
+        signup_url = reverse_lazy("customer:register")
+        return "http://%s%s?rc=%s" % (current_site.domain, signup_url, self.referral_code)
