@@ -1,5 +1,3 @@
-from django.conf.urls import url
-
 import oscar.apps.offer.apps as apps
 
 
