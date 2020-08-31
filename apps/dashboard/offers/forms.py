@@ -1,15 +1,14 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-from oscar.core.loading import get_class, get_model
+from oscar.apps.dashboard.offers.forms import ConditionForm as CoreConditionForm
+from oscar.core.loading import get_model
 
 from apps.offer.models import ConditionIncompatible
 
 
 Condition = get_model('offer', 'Condition')
 ConditionalOffer = get_model('offer', 'ConditionalOffer')
-CoreConditionForm = get_class('dashboard.offers.forms', 'ConditionForm')
-
 
 # Voucher offer type deliberately excluded, since voucher offer types created through
 # the dedicated dashboard view.

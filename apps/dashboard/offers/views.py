@@ -1,6 +1,4 @@
-from oscar.core.loading import get_class
-
-CoreOfferConditionView = get_class("dashboard.offers.views", "OfferConditionView")
+from oscar.apps.dashboard.offers.views import OfferConditionView as CoreOfferConditionView
 
 
 class OfferConditionView(CoreOfferConditionView):
