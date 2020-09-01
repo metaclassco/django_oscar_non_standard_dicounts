@@ -14,10 +14,12 @@ class AccountRegistrationView(CoreAccountRegistrationView):
     def dispatch(self, request, *args, **kwargs):
         referral_code = request.GET.get('rc', None)
         if referral_code:
-            if User.objects.filter(referral_code=referral_code).exists():
-                self.referral_code = referral_code
-            else:
+            if not User.objects.filter(referral_code=referral_code).exists():
                 messages.error(request, "Referrer account not found.")
+            elif User.objects.filter(referrer__referral_code=referral_code, is_referral_code_used=True):
+                messages.error(request, "Referral code already used.")
+            else:
+                self.referral_code = referral_code
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
